@@ -12,6 +12,15 @@
             "console": "integratedTerminal",
             "args": ["-m"],
             "env": {"PYTHONUNBUFFERED" : "1"}
+        },
+        {
+            "name": "Uppgift00",
+            "type": "python",
+            "request": "launch",
+            "program": "gridworld.py",
+            "console": "integratedTerminal",
+            "args": ["-g", "MazeGrid"],
+            "env": {"PYTHONUNBUFFERED" : "1"}
         }
     ]
 }
