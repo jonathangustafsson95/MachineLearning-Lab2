@@ -37,13 +37,19 @@ class ValueIterationAgent(ValueEstimationAgent):
 
             for state in self.mdp.getStates():
                 vals = []
-                for action in self.mdp.getPossibleActions(state):
-                    vals.append(self.getQValue(state, action))
-
-                if vals == []:
+                possible_actions = self.mdp.getPossibleActions(state)
+                
+                if len(possible_actions) == 0:
                     values_copy[state] = 0
                 else:
-                    values_copy[state] = max(vals)
+                    max_q = self.getQValue(state, possible_actions[0])
+                    
+                    for i in range(1, len(possible_actions)):
+                        next_qval = self.getQValue(state, possible_actions[i])
+                        if next_qval > max_q:
+                            max_q = next_qval
+
+                    values_copy[state] = max_q
             
             self.values = values_copy
 
